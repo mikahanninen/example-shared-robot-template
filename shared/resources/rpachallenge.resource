@@ -1,27 +1,28 @@
 *** Settings ***
-Documentation     Robot to solve the first challenge at rpachallenge.com, which
-...               consists of filling a form that randomly rearranges itself,
-...               with data taken from a provided Microsoft Excel file.
-Library           RPA.Browser.Selenium
-Library           RPA.Excel.Files
-Library           RPA.HTTP
+Documentation       Robot to solve the first challenge at rpachallenge.com, which
+...                 consists of filling a form that randomly rearranges itself,
+...                 with data taken from a provided Microsoft Excel file.
+
+Library             RPA.Browser.Selenium
+Library             RPA.Excel.Files
+Library             RPA.HTTP
+
 
 *** Keywords ***
 Get the list of people from the Excel file
-    Open Workbook    challenge.xlsx
+    [Arguments]    ${excel_file}=challenge.xlsx
+    Open Workbook    ${excel_file}
     ${table}=    Read Worksheet As Table    header=True
     Close Workbook
-    [Return]    ${table}
+    RETURN    ${table}
 
-*** Keywords ***
 Set value by XPath
     [Arguments]    ${xpath}    ${value}
     ${result}=
     ...    Execute Javascript
     ...    document.evaluate('${xpath}',document.body,null,9,null).singleNodeValue.value='${value}';
-    [Return]    ${result}
+    RETURN    ${result}
 
-*** Keywords ***
 Fill and submit the form
     [Arguments]    ${person}
     Set Value By XPath    //input[@ng-reflect-name="labelFirstName"]    ${person}[First Name]

@@ -1,6 +1,6 @@
 tasks:
-  Run All Tasks:
-    shell: python -m pytest test
+  Basic Task:
+    robotTaskName: Basic task
 
 
 condaConfigFile: conda.yaml
