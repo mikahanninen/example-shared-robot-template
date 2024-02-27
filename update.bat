@@ -1,7 +1,7 @@
 @echo off
 pushd .
 SETLOCAL ENABLEDELAYEDEXPANSION
-SET SHARED_REPOSITORY=https://github.com/robocorp/example-shared-code-common
+SET SHARED_REPOSITORY=https://github.com/mikahanninen/example-shared-code-common
 SET SHARED_DIRECTORY=shared
 
 SET scriptPath=%~dp0
